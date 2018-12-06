@@ -1,0 +1,181 @@
+package pnet.xmlParser;
+
+import java.util.List;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import android.renderscript.Element;
+import android.util.Log;
+
+import pnet.model.ApnInfo;
+
+public class VpdnListContentHandler extends DefaultHandler {
+	private List<ApnInfo> infos = null;
+	public List<ApnInfo> getInfos() {
+		return infos;
+	}
+
+	public VpdnListContentHandler(List<ApnInfo> infos) {
+		super();
+		this.infos = infos;
+	}
+
+	public void setInfos(List<ApnInfo> infos) {
+		this.infos = infos;
+	}
+
+	private ApnInfo apnInfo = null;
+	private  String tagName = null;
+	private String attributeValue1 = null; //第一个属性值
+	private String attributeValue2 =null;  //第二个属性值
+	private String attributeName2= null;//第二个属性名
+	@Override
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
+		//如果非空
+		Log.e("attribute1", ""+attributeValue1);
+		
+		if (attributeValue2!=null  && !(attributeName2.equals("nil")  && 
+				attributeValue2.equals("true") ) ) {
+			
+			// TODO Auto-generated method stub
+			String temp = new String(ch, start, length);
+			
+			if (temp!=null){
+			
+				System.out.println("temp-->"+temp);
+			}
+			
+			if (attributeValue1.equals("id")) {
+				apnInfo.setId(temp);
+			} else if (attributeValue1.equals("apn")) {
+				apnInfo.setApn(temp);
+			} else if (attributeValue1.equals("alias")) {
+				apnInfo.setAlias(temp);
+
+			} else if (attributeValue1.equals("status")) {
+				apnInfo.setStatus(temp);
+
+			} else if (attributeValue1.equals("city")) {
+				apnInfo.setCity(temp);
+				
+			} else if (attributeValue1.equals("username")) {
+				apnInfo.setUsername(temp);
+				
+			} else if (attributeValue1.equals("industry")){
+				apnInfo.setIndustry(temp);
+			} else if (attributeValue1.equals("ggsnid")){
+				apnInfo.setGgsnid(temp);
+				
+			} else if (attributeValue1.equals("protocol")){
+					apnInfo.setProtocol(temp);
+			}else if (attributeValue1.equals("vpnid")){
+				apnInfo.setVpnid(temp);
+			}else if (attributeValue1.equals("interfaceipbegin")){
+				apnInfo.setInterfaceipbegin(temp);
+			}else if (attributeValue1.equals("interfaceipend")){
+				apnInfo.setInterfaceipend(temp);
+			}else if (attributeValue1.equals("ippooltype")) {
+				apnInfo.setIppooltype(temp);
+			}else if (attributeValue1.equals("ippool")) {
+				apnInfo.setIppool(temp);
+			}else if (attributeValue1.equals("routeid")) {
+				apnInfo.setRouteid(temp);
+			}else if (attributeValue1.equals("routeif")) {
+				apnInfo.setRouteif(temp);
+			}else if (attributeValue1.equals("routevlan")) {
+				apnInfo.setRoutevlan(temp);
+			}else if (attributeValue1.equals("linename")) {
+				apnInfo.setLinename(temp);
+			}else if (attributeValue1.equals("contactid")) {
+				apnInfo.setContactid(temp);
+			}else if (attributeValue1.equals("commhis")) {
+				apnInfo.setCommhis(temp);
+			}else if (attributeValue1.equals("created_at")) {
+				apnInfo.setCreated_at(temp);
+			}else if (attributeValue1.equals("updated_at")) {
+				apnInfo.setUpdated_at(temp);
+			}else if (attributeValue1.equals("loopback")) {
+				apnInfo.setLoopback(temp);
+			}else if (attributeValue1.equals("transinfo")) {
+				apnInfo.setTransinfo(temp);;
+			}
+		}
+		else
+		{
+	//		Log.e("attributeName2", attributeName2);
+	//		Log.e("attributeValue2", attributeValue2);
+			Log.e("empty", "attribute2");
+			
+			attributeValue1 = "";
+			attributeValue2 = "";
+			attributeName2 = "";
+
+		}
+		super.characters(ch, start, length);
+	}
+
+	@Override
+	public void endDocument() throws SAXException {
+		// TODO Auto-generated method stub
+		System.out.println("end document");
+		System.out.println("end document apninfos"+apnInfo.toString());
+		super.endDocument();
+	}
+
+	@Override
+	public void endElement(String uri, String localName, String qName)
+			throws SAXException {
+		// TODO Auto-generated method stub
+		System.out.println("endElement qName-->" + qName);
+		System.out.println("endElement localName-->" + localName);
+		if (localName.equals("row")){
+			infos.add(apnInfo);
+			
+			System.out.println("ApnInfo---->" + apnInfo);
+		}
+		tagName = "";
+		attributeValue1 = "";
+		attributeValue2 = "";
+		attributeName2 = "";
+		System.out.println("-------------------------------------------");
+		super.endElement(uri, localName, qName);
+	}
+
+	@Override
+	public void startDocument() throws SAXException {
+		// TODO Auto-generated method stub
+		super.startDocument();
+	}
+
+	@Override
+	public void startElement(String uri, String localName, String qName,
+			Attributes attributes) throws SAXException {
+		// TODO Auto-generated method stub
+		this.tagName = localName;
+		System.out.println("startElement localName--->" + localName);
+		System.out.println("startElement qlName--->" + qName);
+		System.out.println("startElement Uri--->" + uri);
+		
+		System.out.println("startElement attrValue0--->" + attributes.getValue(0));
+		System.out.println("startElement attribute(0) getLocalName--->" + attributes.getLocalName(0));
+
+		System.out.println("startElement getqName(0)--->" + attributes.getQName(0));
+		System.out.println("startElement attrLength--->" + attributes.getLength());
+		System.out.println("startElement attrValues--->" + attributes.toString());
+		if(attributes.getValue(0)!=null)
+			attributeValue1 = attributes.getValue(0);
+		if (attributes.getLength() > 1) {
+			attributeValue2 = attributes.getValue(1);
+			attributeName2 = attributes.getLocalName(1); 
+		}
+		if (tagName.equals("row")){
+			apnInfo = new ApnInfo();
+			Log.i("create a apnInfo", "created!");
+		}
+		super.startElement(uri, localName, qName, attributes);
+	}
+
+}

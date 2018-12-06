@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">分组网</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="apninfo_update">更新</string>
+    <string name="apninfo_about">关于</string>
+    <string name="vpdn_name">VPDN APP</string>
+    <string name="warnings_name">告警查询</string>
+    <string name="Happentime">发生时间</string>
+    <string name="Netype">网元</string>
+    <string name="Severity">告警级别</string>
+    <string name="AddText">附件文本</string>
+    <string name="Code">告警码</string>
+    <string name="Reason">告警原因</string>
+    <string name="RabFail">RAB指派失败</string>
+    
+    <string name="Position">网元内定位：</string>
+    <string name="webview_name">分组网 </string>
+    <string name="maintainance_list_name">维护</string>
+    <string name="accounts_list_name">台帐</string>
+    <string name="indictitor_list_name">指标</string>
+    <string name="scan_text">二维码放入框中自动扫描</string>
+    <string name="login">登录</string>
+    <string name="text_hint">Channel绑定信息：</string>
+    <string name="text_btn_init">登陆百度账号初始化Channel</string>
+    <string name="text_btn_init1">更换百度账号初始化Channel</string>
+    <string name="text_btn_rich">查看富媒体消息</string>
+    <string name="text_btn_initAK">无账号初始化Channel</string>
+    <string name="text_btn_setTags">设置标签</string>
+    <string name="text_btn_delTags">删除标签</string>
+    <string name="text_btn_senior">高级功能</string>
+    <string name="text_btn_set">设置</string>
+    <string name="text_media_title">富媒体消息列表</string>
+    <string name="media">Rich Media</string>
+    <string name="custom_text_hint">用户自定义打开的Activity</string>
+    <string name="tags_hint">请输入多个标签，以英文逗号隔开</string>
+
+</resources>
